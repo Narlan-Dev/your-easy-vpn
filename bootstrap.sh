@@ -1,5 +1,12 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/bin/bash -uxe
+# A bash script that prepares the OS
+# before running the Ansible playbook
+
+# Discard stdin. Needed when running from an one-liner which includes a newline
+read -N 999999 -t 0.001
+
+# Quit on error
+set -e
 
 # Detect OS
 if grep -qs "ubuntu" /etc/os-release; then
